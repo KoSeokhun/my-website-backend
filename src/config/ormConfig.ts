@@ -15,7 +15,7 @@ export default class TypeOrmConfig {
             database: configService.get('DATABASE_NAME'),
             entities: [__dirname + '/../**/*.entity{.ts,.js}'],
             synchronize: configService.get('DATABASE_SYNC'),
-            logging: true,
+            logging: false,
             migrations: ['dist/migrations/*{.ts,.js}'],
             migrationsTableName: 'custom_migration_table',
         }
