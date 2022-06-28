@@ -1,7 +1,7 @@
 import { Transform } from "class-transformer";
 import { IsEmail, IsString, Matches, MaxLength, MinLength } from "class-validator";
 // import { BadRequestException } from "@nestjs/common";
-import { NotIn } from "../../utils/validators/NotIn";
+import { NotIn } from "../../../utils/validators/NotIn";
 
 export class CreateUserDto {
     // 사용자 이름은 2자 이상 30자 이하인 문자열이어야 한다.

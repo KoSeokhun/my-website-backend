@@ -7,5 +7,5 @@ export class CreateUserEvent extends CqrsEvent implements IEvent {
         readonly signUpVerifyToken: string,
     ) {
         super(CreateUserEvent.name);
-}
+    }
 }

@@ -1,8 +1,8 @@
 import { NotFoundException } from "@nestjs/common";
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
+import { UserEntity } from "src/users/infra/db/entitiy/users.entity";
+import { UserInfo } from "src/users/interface/UserInfo";
 import { DataSource } from "typeorm";
-import { UserEntity } from "../entitiy/users.entity";
-import { UserInfo } from "../UserInfo";
 import { GetUserInfoQuery } from "./get-user-info.query";
 
 @QueryHandler(GetUserInfoQuery)
