@@ -1,4 +1,4 @@
-import { Inject, Injectable, NotFoundException, UnprocessableEntityException } from "@nestjs/common";
+import { Inject, Injectable, NotFoundException, } from "@nestjs/common";
 import { CommandHandler, ICommandHandler } from "@nestjs/cqrs";
 import { AuthService } from "src/auth/auth.service";
 import { IUserRepository } from "src/users/domain/repository/iuser.repository";
@@ -25,7 +25,6 @@ export class VerifyEmailHandler implements ICommandHandler<VerifyEmailCommand> {
         
         return this.authService.login({
             id: user.getId(),
-            name: user.getName(),
             email: user.getEmail(),
         });
     }

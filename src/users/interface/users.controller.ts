@@ -1,7 +1,8 @@
 import {
-    BadRequestException,
+   // BadRequestException,
     Body, Controller, Get,
-    Inject, InternalServerErrorException, Logger, LoggerService, Param, Post, Query, UseGuards
+   // Inject, InternalServerErrorException, Logger, LoggerService,
+    Param, Post, Query, UseGuards
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { AuthGuard } from 'src/auth.guard';
@@ -20,12 +21,12 @@ export class UsersController {
     private commandBus: CommandBus,
     private queryBus: QueryBus,) { }
 
-    @Post()
+    @Post("/register")
     async createUser(@Body() dto: CreateUserDto): Promise<void> {
        // this.printLoggerServiceLog(dto);
-        const { name, email, password } = dto;
+        const { email, password } = dto;
 
-        const command = new CreateUserCommand(name, email, password);
+        const command = new CreateUserCommand(email, password);
 
         return await this.commandBus.execute(command);
     }
@@ -61,7 +62,7 @@ export class UsersController {
     }
 
     @UseGuards(AuthGuard)
-    @Get(":id")
+    @Get("/:id")
     async getUserInfo(@Param("id") userId: string): Promise<UserInfo> {
         // if (+userId < 1) {
         //     throw new BadRequestException('id는 0보다 큰 정수여야 합니다', 'id format exception');

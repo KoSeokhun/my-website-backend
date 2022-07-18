@@ -5,7 +5,6 @@ import { ConfigType } from '@nestjs/config';
 
 interface User {
     id: string;
-    name: string;
     email: string;
 }
 

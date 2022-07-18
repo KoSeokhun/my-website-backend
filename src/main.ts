@@ -21,9 +21,14 @@ async function bootstrap() {
       ]
     })
   });
+
+  // useGlobalPipes.
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
   }));
+
+  // enableCors.
+  app.enableCors();
   await app.listen(3000);
 }
 bootstrap();

@@ -20,9 +20,9 @@ export class UserRepository implements IUserRepository {
             return null;
         }
 
-        const { id, name, password, signUpVerifyToken } = userEntity;
+        const { id, password, signUpVerifyToken } = userEntity;
 
-        return this.userFactory.reconstitute(id, name, email, password, signUpVerifyToken);
+        return this.userFactory.reconstitute(id, email, password, signUpVerifyToken);
     };
 
     async findByEmailAndPassword(email: string, password: string): Promise<User | null> {
@@ -31,9 +31,9 @@ export class UserRepository implements IUserRepository {
             return null;
         }
 
-        const { id, name, signUpVerifyToken } = userEntity;
+        const { id, signUpVerifyToken } = userEntity;
 
-        return this.userFactory.reconstitute(id, name, email, password, signUpVerifyToken)
+        return this.userFactory.reconstitute(id, email, password, signUpVerifyToken)
     }
 
     async findBySignUpVerifyToken(signUpVerifyToken: string): Promise<User> {
@@ -42,12 +42,12 @@ export class UserRepository implements IUserRepository {
             return null;
         }
 
-        const { id, name, email, password } = userEntity;
+        const { id, email, password } = userEntity;
 
-        return this.userFactory.reconstitute(id, name, email, signUpVerifyToken, password);
+        return this.userFactory.reconstitute(id, email, signUpVerifyToken, password);
     }
 
-    async save(id: string, name: string, email: string, password: string, signUpVerifyToken: string): Promise<void> {
+    async save(id: string, email: string, password: string, signUpVerifyToken: string): Promise<void> {
         const queryRunner = this.dataSource.createQueryRunner();
 
         await queryRunner.connect();
@@ -56,7 +56,6 @@ export class UserRepository implements IUserRepository {
             const user = new UserEntity();
 
             user.id = id;
-            user.name = name;
             user.email = email;
             user.password = password;
             user.signUpVerifyToken = signUpVerifyToken;

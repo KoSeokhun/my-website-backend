@@ -13,7 +13,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
         @Inject('UserRepository') private userRepository: IUserRepository,) { }
     
     async execute(command: CreateUserCommand) {
-        const { name, email, password } = command;
+        const { email, password } = command;
 
         const user = await this.userRepository.findByEmail(email);
         if (user !== null) {
@@ -23,8 +23,8 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
         const id = ulid();
         const signUpVerifyToken = uuid.v1();
 
-        await this.userRepository.save(id, name, email, password, signUpVerifyToken);
+        await this.userRepository.save(id, email, password, signUpVerifyToken);
 
-        this.userFactory.create(id, name, email, password, signUpVerifyToken);
+        this.userFactory.create(id, email, password, signUpVerifyToken);
     }
 }

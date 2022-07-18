@@ -25,7 +25,6 @@ export class LoginHandler implements ICommandHandler<LoginCommand> {
     
         return this.authService.login({
             id: user.getId(),
-            name: user.getName(),
             email: user.getEmail(),
         });
     }

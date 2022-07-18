@@ -10,12 +10,11 @@ export class UserFactory {
 
     create(
         id: string,
-        name: string,
         email: string,
         password: string,
         signUpVerifyToken: string,
     ): User {
-        const user = new User(id, name, email, password, signUpVerifyToken);
+        const user = new User(id, email, password, signUpVerifyToken);
 
         this.eventBus.publish(new CreateUserEvent(email, signUpVerifyToken));
         this.eventBus.publish(new TestEvent());
@@ -25,11 +24,10 @@ export class UserFactory {
 
     reconstitute(
         id: string,
-        name: string,
         email: string,
         password: string,
         signUpVerifyToken: string,
     ): User {
-        return new User(id, name, email, password, signUpVerifyToken);
+        return new User(id, email, password, signUpVerifyToken);
     }
 }
